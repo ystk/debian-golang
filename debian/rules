@@ -73,17 +73,17 @@ override_dh_install:
 	done
 	dh_install --fail-missing
 	# Remove .syso files of the race detector; it is not used yet and the files are arch-dependent.
-	find $(CURDIR)/debian/golang-src/usr/share/go/src/pkg/runtime/race -type f -name '*.syso' -delete
+	-find $(CURDIR)/debian/golang-src/usr/share/go/src/pkg/runtime/race -type f -name '*.syso' -delete
 	# Remove Plan9 rc(1) scripts
-	find $(CURDIR)/debian/golang-src/usr/share/go/src -type f -name "*.rc" -delete
+	-find $(CURDIR)/debian/golang-src/usr/share/go/src -type f -name "*.rc" -delete
 	# Remove empty /usr/share/go/src from golang-go, it is provided by golang-src
-	find $(CURDIR)/debian/golang-go/usr/share/go/src -type d -delete
+	-find $(CURDIR)/debian/golang-go/usr/share/go/src -type d -delete
 	# Subsequently, /usr/share/go is empty, too, so remove
-	find $(CURDIR)/debian/golang-go/usr/share/go -type d -delete
+	-find $(CURDIR)/debian/golang-go/usr/share/go -type d -delete
 	# For some reason, Go cross-compiles a handful of tools: {yacc,fix,api,vet,cgo}.
 	# Delete those, as they cannot be ran anyway.
 	# This is tracked upstream at https://code.google.com/p/go/issues/detail?id=5667
-	(cd $(CURDIR)/debian/golang-go/usr/lib/go/pkg/tool && find . -depth -path "./$(GOHOSTOS)_$(GOHOSTARCH)*" -prune -o -delete)
+	-(cd $(CURDIR)/debian/golang-go/usr/lib/go/pkg/tool && find . -depth -path "./$(GOHOSTOS)_$(GOHOSTARCH)*" -prune -o -delete)
 	# Touch built and installed files and directories to have same timestamp
 	touch $(CURDIR)/debian/golang-go/usr/lib/go/pkg
 	find $(CURDIR)/debian/golang-go/usr/lib/go/pkg -exec touch -r $(CURDIR)/debian/golang-go/usr/lib/go/pkg {} \;

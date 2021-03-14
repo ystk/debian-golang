@@ -4,3 +4,14 @@
 0004-archive-tar-fix-writing-of-pax-headers.patch
 CVE-2019-6486.patch
 CVE-2019-9741.patch
+
+CVE-2016-3959.patch
+CVE-2017-15041.patch
+CVE-2017-1000098.patch
+CVE-2018-7187.patch
+CVE-2018-16873,16874.patch
+CVE-2015-5739.patch
+CVE-2019-16276.patch
+CVE-2019-17596.patch
+CVE-2020-16845.patch
+CVE-2021-3114.patch
